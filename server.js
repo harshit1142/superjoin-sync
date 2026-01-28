@@ -85,5 +85,14 @@ async function syncDbToSheet() {
 // Poll every 5 seconds
 setInterval(syncDbToSheet, 5000);
 
+app.get('/view-db', async (req, res) => {
+    try {
+        const [rows] = await pool.execute("SELECT * FROM sync_data");
+        res.json(rows); 
+    } catch (err) {
+        res.status(500).send("Error fetching data: " + err.message);
+    }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Sync Engine running on port ${PORT}`));

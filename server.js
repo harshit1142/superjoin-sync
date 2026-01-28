@@ -27,6 +27,8 @@ const sheets = google.sheets({ version: 'v4', auth });
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
 
 const SPREADSHEET_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}`;
+
+const DB_URL = `https://superjoin-sync-frkp.onrender.com/view-db`;
 app.get('/', (req, res) => {
     res.send(`
         <html>
@@ -35,6 +37,7 @@ app.get('/', (req, res) => {
                 <p>Backend Status: 🟢 Online</p>
                 <p>Check the Google Sheet and MySQL DB to see the live sync in action.</p>
                 <a href=${SPREADSHEET_URL} target="_blank">Open Google Sheet</a>
+                <a href=${DB_URL} target="_blank">Open Database</a>
             </body>
         </html>
     `);

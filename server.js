@@ -20,6 +20,7 @@ const auth = new google.auth.GoogleAuth({
 const sheets = google.sheets({ version: 'v4', auth });
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
 
+const SPREADSHEET_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}`;
 app.get('/', (req, res) => {
     res.send(`
         <html>
@@ -27,7 +28,7 @@ app.get('/', (req, res) => {
                 <h1>Superjoin 2-Way Sync Status</h1>
                 <p>Backend Status: 🟢 Online</p>
                 <p>Check the Google Sheet and MySQL DB to see the live sync in action.</p>
-                <a href="${process.env.SPREADSHEET_URL}" target="_blank">Open Google Sheet</a>
+                <a href=${SPREADSHEET_URL} target="_blank">Open Google Sheet</a>
             </body>
         </html>
     `);
